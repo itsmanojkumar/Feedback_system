@@ -6,6 +6,16 @@
   interface employee{
     name:string;
     improve:string;
+    strengths:string;
+    feedback:string;
+  }
+
+  interface feedbackdata{
+    name:string;
+    improve:string;
+    strengths:string;
+    feedback:string;
+
   }
 
 
@@ -13,8 +23,12 @@
   function page() {
     const [form,setForm]=useState<employee>({
       name:'',
-      improve:''
+      improve:'',
+      strengths:'',
+      feedback:'',
     });
+
+    const [alldata,setAlldata]=useState<feedbackdata[]>([]);
 
      const handlechange=(e:ChangeEvent<HTMLInputElement>)=>{
       const {name, value}=e.target;
@@ -23,16 +37,14 @@
     async function getdata(){
       const response=await fetch("");
       const data= await response.json();
-    return data;
+
+      setAlldata(JSON.parse(data));
     }
     
     const handlesubmit=async (e:FormEvent<HTMLFormElement>)=>{
       e.preventDefault();
       console.log("data submitted");
-      // setForm({
-        // name:"",
-        // improve:''
-      // })
+     
       
 
     
@@ -54,6 +66,12 @@
      catch(error){
           console.log(error);
      }
+     setForm({
+        name:"",
+        strengths:'',
+        improve:'',
+        feedback:''
+      })
       
 
     }
@@ -63,10 +81,12 @@
       <div> 
         <button>Create</button>
       </div>
-      <div className='flex gap-10'>
+      <div className='flex gap-5'>
         <form onSubmit={handlesubmit}>
         <label htmlFor='employee-name'>Name:</label>
         <input type='text' id='employee-name' name="name" onChange={handlechange} placeholder='enter employee name' value={form.name}></input> 
+        <label htmlFor='strenghths'>Strengths:</label>
+        <input type='text' id='strenghts' name='strengths' onChange={handlechange} placeholder='Strengths' value={form.strengths}></input>
         <label htmlFor='improves'>Improve:</label> 
         <input type='text' id='improves' name='improve' onChange={handlechange} placeholder='areas to improve' value={form.improve}></input>
         <span><label htmlFor=''>Overall Sentiment</label>
@@ -77,10 +97,28 @@
         <input type="checkbox" /></label>
         <label htmlFor=''>Negative
         <input type="checkbox" /></label></span>
+        <label htmlFor='feedback'>Feedback:</label>
+        <input type='text' id='feedback' name='feedback' onChange={handlechange} placeholder='Enter feedback' value={form.feedback}></input>
+
     
         
         <span><button type='submit'>Submit</button></span>
         </form>
+      {alldata?.map((item,index)=>{
+        return (
+          <div key={index}>
+            <p>{item.name}</p>
+            <p>{item.improve}</p>
+            <p>{item.strengths}</p>
+            <p>{item.feedback}</p>
+          </div>
+
+
+        )
+        
+      })}
+
+      
       </div>
 
       </>

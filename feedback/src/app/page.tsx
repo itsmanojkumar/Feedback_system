@@ -1,6 +1,7 @@
   'use client'
   import { HtmlContext } from 'next/dist/server/route-modules/pages/vendored/contexts/entrypoints';
   import React, { ChangeEvent, FormEvent, useState } from 'react'
+  import { useEffect } from 'react';
   
 
   interface employee{
@@ -34,12 +35,17 @@
       const {name, value}=e.target;
       setForm(prevForm=>({...prevForm,[name]:value,}))  };
 
-    async function getdata(){
-      const response=await fetch("");
+    useEffect(()=>{
+      async function getdata(){
+      const response=await fetch("http://127.0.0.1:8000/api/data");
       const data= await response.json();
+      console.log("useeefffectdata",data)
 
-      setAlldata(JSON.parse(data));
+      setAlldata(data.data);
+      console.log("alldatadebug",alldata)
     }
+    getdata();
+  },[form])
     
     const handlesubmit=async (e:FormEvent<HTMLFormElement>)=>{
       e.preventDefault();
@@ -104,9 +110,11 @@
         
         <span><button type='submit'>Submit</button></span>
         </form>
+         </div>
+      <div className='flex flex-row flex-wrap'>
       {alldata?.map((item,index)=>{
         return (
-          <div key={index}>
+          <div  className=' ' key={index}>
             <p>{item.name}</p>
             <p>{item.improve}</p>
             <p>{item.strengths}</p>
@@ -117,9 +125,10 @@
         )
         
       })}
+      </div>
 
       
-      </div>
+   
 
       </>
     )

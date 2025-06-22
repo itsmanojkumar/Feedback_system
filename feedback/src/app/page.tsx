@@ -98,11 +98,11 @@
         <span><label htmlFor=''>Overall Sentiment</label>
         {/* <checkbox></checkbox> */}
         <label htmlFor=''>Positive
-        <input type="checkbox" /></label>
+        <input type="radio" /></label>
         <label htmlFor=''>Neutral
-        <input type="checkbox" /></label>
+        <input type="radio" /></label>
         <label htmlFor=''>Negative
-        <input type="checkbox" /></label></span>
+        <input type="radio" /></label></span>
         <label htmlFor='feedback'>Feedback:</label>
         <input type='text' id='feedback' name='feedback' onChange={handlechange} placeholder='Enter feedback' value={form.feedback}></input>
 
@@ -111,14 +111,16 @@
         <span><button type='submit'>Submit</button></span>
         </form>
          </div>
-      <div className='flex flex-row flex-wrap'>
+      <div className=''>
       {alldata?.map((item,index)=>{
         return (
-          <div  className=' ' key={index}>
+          <div  className='flex flex-row gap-5 m-2' key={index}>
             <p>{item.name}</p>
             <p>{item.improve}</p>
             <p>{item.strengths}</p>
             <p>{item.feedback}</p>
+            <button className='px-2 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition cursor-pointer'>Edit</button>
+            <button className='px-2 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition cursor-pointer'>Send Feedback</button>
           </div>
 
 

@@ -1,6 +1,9 @@
+'use client' 
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 function login() {
+    const router=useRouter();
     const [username,setUsername]=useState<string>("")
     const [password,setPassword]=useState<any>("")
     const handlesubmit=async ()=>{
@@ -12,7 +15,12 @@ function login() {
             },
             body:JSON.stringify({username,password}),
         });
-        return await response.json()
+        const data= await response.json();
+        if (data.success) {
+        router.push('/');
+      } else {
+        alert('Login failed: ' + data.message);
+      }
         }
         catch(error){
             console.log(error)

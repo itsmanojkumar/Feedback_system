@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
   import React, { ChangeEvent, FormEvent, useState } from 'react'
   import { useEffect } from 'react';
+  import login from './login/page';
   
 
   interface employee{
@@ -98,6 +99,7 @@ import { useRouter } from 'next/navigation';
       <>
       <div> 
         <button>Create</button>
+        <login/>
       </div>
       <div className='flex gap-5'>
         <form onSubmit={handlesubmit}>

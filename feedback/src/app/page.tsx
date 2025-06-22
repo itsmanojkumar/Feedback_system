@@ -1,5 +1,6 @@
   'use client'
   import { HtmlContext } from 'next/dist/server/route-modules/pages/vendored/contexts/entrypoints';
+import { useRouter } from 'next/navigation';
   import React, { ChangeEvent, FormEvent, useState } from 'react'
   import { useEffect } from 'react';
   
@@ -81,7 +82,18 @@
       
 
     }
-   
+    const router=useRouter();
+    const feedbacksystem=(item:feedbackdata)=>{
+      const queryParams = new URLSearchParams({
+    name: item.name,
+    improve: item.improve,
+    strengths: item.strengths,
+    feedback: item.feedback,
+  }).toString();
+
+  router.push(`/feedback?${queryParams}`);
+  };
+
     return (
       <>
       <div> 
@@ -120,7 +132,7 @@
             <p>{item.strengths}</p>
             <p>{item.feedback}</p>
             <button className='px-2 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition cursor-pointer'>Edit</button>
-            <button className='px-2 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition cursor-pointer'>Send Feedback</button>
+            <button onClick={()=>feedbacksystem(item)} className='px-2 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition cursor-pointer'>Send Feedback</button>
           </div>
 
 

@@ -22,7 +22,7 @@ function Login() {
   const data = JSON.parse(text);  // Try to parse
   console.log("Parsed JSON:", data);
         if (response.ok) {
-        router.push('/');
+        router.push('/dashboard');
       } else {
         alert('Login failed: ' + data.message);
       }

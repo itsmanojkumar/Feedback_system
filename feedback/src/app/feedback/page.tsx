@@ -17,6 +17,7 @@ export default function FeedbackPage() {
       <p>Areas to Improve: {improve}</p>
       <p>Feedback: {feedback}</p>
       <textarea className="w-150 h-32 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder='Enter feedback'></textarea>
+      <button>Send</button>
     </div>
   );
 }

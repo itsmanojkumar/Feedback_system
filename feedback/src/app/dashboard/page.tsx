@@ -39,7 +39,7 @@ function page() {
 
   useEffect(() => {
     async function getdata() {
-      const response = await fetch("http://127.0.0.1:8000/api/data");
+      const response = await fetch("https://backend-server-feedback.onrender.com/api/data");
       const data = await response.json();
       console.log("useeefffectdata", data);
       setAlldata(data.data);
@@ -51,7 +51,7 @@ function page() {
     e.preventDefault();
     console.log("data submitted");
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/data", {
+      const response = await fetch("https://backend-server-feedback.onrender.com/api/data", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ function page() {
 
   const handledelete = async (id: number) => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/data/${id}/`, {
+      const response = await fetch(`https://backend-server-feedback.onrender.com/api/data/${id}`, {
         method: 'DELETE',
       });
       if (response.ok) {

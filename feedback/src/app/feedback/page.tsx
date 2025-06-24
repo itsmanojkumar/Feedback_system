@@ -21,11 +21,11 @@ export default function FeedbackPage() {
 
     const payload = {
       name: name,
-      feedback: feedbackform,
+      feedback: [{ message: feedbackform }],
     };
     console.log("payload is", payload);
     try {
-      const response = await fetch("http://127.0.0.1:8000/feedback", {
+      const response = await fetch("https://backend-server-feedback.onrender.com/feedback", {
         method: "post",
         headers: {
           "Content-Type": "application/json",

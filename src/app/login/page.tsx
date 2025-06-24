@@ -65,6 +65,8 @@ function Login() {
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Login</h2>
+                <p>username:manager1</p>
+            <p>password:pass123</p>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
@@ -95,8 +97,12 @@ function Login() {
                         Submit
                     </button>
                 </form>
+                <p>for employee<p>username:username given by manager</p>
+                <p>(usernamegivenby)123</p>
+                </p>
             </div>
         </div>
+        
     )
 }
 
